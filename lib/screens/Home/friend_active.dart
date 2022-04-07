@@ -7,7 +7,7 @@ Padding BuildFriendActive(Size size, int index) {
     return Padding(
       padding: const EdgeInsets.only(left: 18),
       child: Container(
-        width: size.height * 0.2 - 30,
+        width: size.height * 0.14,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),

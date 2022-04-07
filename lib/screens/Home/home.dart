@@ -17,13 +17,15 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.lightBlue[100],
       body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        //header
         children: [
           SizedBox(
-              height: size.height*0.1,
+              height: size.height * 0.1,
               // color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.only(top: 10, left: 10, right: 10,bottom: 10),
+                padding: const EdgeInsets.only(
+                    top: 10, left: 10, right: 10, bottom: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,12 +37,12 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               )),
-         
+              // active friend
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                  height: size.height * 0.16,
+                  height: size.height * 0.14,
                   // color: Colors.amberAccent,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -49,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                           BuildFriendActive(size, index))),
               Stack(children: [
                 Container(
-                  height: size.height * 0.67,
+                  height: size.height -size.height * 0.14 -size.height * 0.1 - 48,
                   width: size.width,
                   padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
                   margin: const EdgeInsets.only(top: 20),
@@ -65,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         itemCount: chatsData.length,
                         itemBuilder: (context, index) =>
-                            BuildChats(size:size, index:index)),
+                            BuildChats(size: size, index: index)),
                   ),
                 ),
                 Container(
