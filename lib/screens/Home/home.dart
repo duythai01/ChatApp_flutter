@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               )),
-              // active friend
+          // active friend
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -48,10 +48,11 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: friendsList.length,
                       itemBuilder: (context, index) =>
-                          BuildFriendActive(size, index))),
+                          BuildStoryBoard(size, index))),
               Stack(children: [
                 Container(
-                  height: size.height -size.height * 0.14 -size.height * 0.1 - 48,
+                  height:
+                      size.height - size.height * 0.14 - size.height * 0.1 - 48,
                   width: size.width,
                   padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
                   margin: const EdgeInsets.only(top: 20),

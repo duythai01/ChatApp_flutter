@@ -162,9 +162,8 @@ class LoginContent extends StatelessWidget {
                         color: Colors.blue,
                         minWidth: double.infinity,
                         onPressed: () {
-                         
-                          if (validationService.isLogin) {
-                             Navigator.push(
+                          if (validationService.isValid()) {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const HomeScreen(),

@@ -54,14 +54,12 @@ class LoginValidate with ChangeNotifier {
     notifyListeners();
   }
 
-  void isValid() {
-    if (phoneNumber != null && password != null) {
-      isLogin = false;
+  bool isValid() {
+    if (_phoneNumber.value != null && _password.value != null) {
+      return true;
     } else {
-      isLogin = true;
+      return false;
     }
-
-    notifyListeners();
   }
 }
 
