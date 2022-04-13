@@ -56,7 +56,7 @@ class LoginContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final validationService = Provider.of<LoginValidate>(context);
     return Scaffold(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: Colors.lightBlue.shade400,
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
@@ -71,7 +71,7 @@ class LoginContent extends StatelessWidget {
                     // Input phone number
                     TextFormField(
                         // controller: _phoneNumber,
-                        // keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.phone,
                         style: const TextStyle(
                           fontSize: 22,
                         ),
@@ -225,7 +225,7 @@ class LoginContent extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text("Not a account?"),
+                        const Text("Not a account?", style: TextStyle(fontSize: 16),),
                         TextButton(
                             onPressed: () => Navigator.push(
                                 context,
@@ -235,7 +235,7 @@ class LoginContent extends StatelessWidget {
                             child: const Text(
                               "Dang ki ngay",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 17,
                                 color: Colors.black,
                               ),
                             )),

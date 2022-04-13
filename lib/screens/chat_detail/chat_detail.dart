@@ -109,7 +109,7 @@ class ChatDetail extends StatelessWidget {
                   color: Colors.red,
                 ),
                 //chat place
-                Container(
+                SizedBox(
                     width: double.infinity,
                     height: size.height * 0.1,
                     // color: Colors.amber,
@@ -138,7 +138,7 @@ class ChatDetail extends StatelessWidget {
                           ),
                           onPressed: () {},
                         ),
-                        Container(
+                        SizedBox(
                           width: size.width * 0.4,
                           height: size.height * 0.06,
                           // color: Colors.green,
