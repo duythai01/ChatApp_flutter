@@ -10,7 +10,8 @@ import '../../constants.dart';
 class Story extends StatelessWidget {
   const Story({
     Key? key,
-    required this.size, required this.settingsProvider,
+    required this.size,
+    required this.settingsProvider,
   }) : super(key: key);
 
   final Size size;
@@ -34,10 +35,10 @@ class Story extends StatelessWidget {
 
 class AddStory extends StatelessWidget {
   const AddStory({
-    Key? key, required this.settingsProvider,
+    Key? key,
+    required this.settingsProvider,
   }) : super(key: key);
-    final SettingsProvider settingsProvider;
-
+  final SettingsProvider settingsProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -52,15 +53,22 @@ class AddStory extends StatelessWidget {
               width: 60,
               child: CircleBtnIcon(
                 margin: 0,
-                colorBackground:settingsProvider.darkMode? Colors.black87: Colors.white ,
-                icon:  Icon(Icons.add, size: 32, color:settingsProvider.darkMode? Colors.white: Colors.black),
+                colorBackground:
+                    settingsProvider.darkMode ? Colors.white54 : Colors.white,
+                icon: Icon(Icons.add,
+                    size: 32,
+                    color: settingsProvider.darkMode
+                        ? Colors.white
+                        : Colors.black),
                 press: () {},
               ),
             ),
             const SizedBox(height: 2),
             Text("Them tin",
-                style:
-                    TextStyle(color: settingsProvider.darkMode? Colors.white : Colors.black, fontWeight: FontWeight.w600))
+                style: TextStyle(
+                    color:
+                        settingsProvider.darkMode ? Colors.white : Colors.black,
+                    fontWeight: FontWeight.w600))
           ],
         ),
       ),
@@ -68,7 +76,8 @@ class AddStory extends StatelessWidget {
   }
 }
 
-Padding BuildStoryBoard(Size size, int index, SettingsProvider settingsProvider) {
+Padding BuildStoryBoard(
+    Size size, int index, SettingsProvider settingsProvider) {
   return Padding(
     padding: const EdgeInsets.only(left: 8),
     child: Container(
@@ -108,7 +117,9 @@ Padding BuildStoryBoard(Size size, int index, SettingsProvider settingsProvider)
                         color: kPrimaryColor,
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color:settingsProvider.darkMode? Colors.black:  kPrimaryColor,
+                          color: settingsProvider.darkMode
+                              ? Colors.black
+                              : kPrimaryColor,
                           width: 2,
                         )),
                     child: const Icon(
@@ -121,8 +132,10 @@ Padding BuildStoryBoard(Size size, int index, SettingsProvider settingsProvider)
           ),
           const SizedBox(height: 2),
           Text(friendsList[index].name,
-              style:  TextStyle(
-                  color:settingsProvider.darkMode?Colors.white: Colors.black, fontWeight: FontWeight.w600))
+              style: TextStyle(
+                  color:
+                      settingsProvider.darkMode ? Colors.white : Colors.black,
+                  fontWeight: FontWeight.w600))
         ],
       ),
     ),

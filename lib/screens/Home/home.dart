@@ -96,7 +96,7 @@ class Home extends StatelessWidget {
       actions: [
         CircleBtnIcon(
           colorBackground:
-              settingsProvider.darkMode ? Colors.black38 : Colors.white,
+              settingsProvider.darkMode ? Colors.white54 : Colors.white,
           margin: 6,
           icon: Icon(
             Icons.camera_alt,
@@ -108,7 +108,7 @@ class Home extends StatelessWidget {
         CircleBtnIcon(
           margin: 6,
           colorBackground:
-              settingsProvider.darkMode ? Colors.black38 : Colors.white,
+              settingsProvider.darkMode ? Colors.white54 : Colors.white,
           icon: Icon(
             Icons.add,
             size: 32,
