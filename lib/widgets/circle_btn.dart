@@ -4,18 +4,19 @@ class CircleBtnIcon extends StatelessWidget {
   final Icon icon;
   final Color colorBackground;
   final VoidCallback press;
+  final double margin;
 
   const CircleBtnIcon(
       {Key? key,
       required this.icon,
       required this.colorBackground,
-      required this.press})
+      required this.press, required this.margin})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(6),
+        margin:  EdgeInsets.all(margin),
         decoration: BoxDecoration(
           color: colorBackground,
           shape: BoxShape.circle,
@@ -36,7 +37,6 @@ class CircleBtnImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
       ),

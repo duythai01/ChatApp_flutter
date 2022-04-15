@@ -6,7 +6,7 @@ import 'package:flutter_chat/components/Icons/icon_login_icons.dart';
 import 'package:flutter_chat/components/Icons/social_icons.dart';
 import 'package:flutter_chat/screens/Home/home.dart';
 import 'package:flutter_chat/screens/register_screen/register.dart';
-import 'package:flutter_chat/validation.dart/validation_login.dart';
+import 'package:flutter_chat/validation/validation_login.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';

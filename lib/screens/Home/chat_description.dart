@@ -2,25 +2,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/models/chat.dart';
+import 'package:flutter_chat/providers/settings.dart';
 import 'package:flutter_chat/screens/chat_detail/chat_detail.dart';
 
 class BuildChats extends StatelessWidget {
   final int index;
   final Size size;
-  const BuildChats({Key? key, required this.index, required this.size})
+  final SettingsProvider settingsProvider;
+  const BuildChats({Key? key, required this.index, required this.size, required this.settingsProvider})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
       width: size.width * 0.9,
-      height: size.height * 0.13,
-      decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          border: Border.all(
-            color: const Color(0XFFd9d9d9),
-          )),
+      height: size.height * 0.1,
       child: MaterialButton(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -46,16 +42,18 @@ class BuildChats extends StatelessWidget {
                   child: Text(
                     chatsData[index].name,
                     style: TextStyle(
-                        color: chatsData[index].isReaded
+                        color: settingsProvider.darkMode? (chatsData[index].isReaded
                             ? Colors.grey
-                            : Colors.black,
+                            : Colors.white):(chatsData[index].isReaded
+                            ? Colors.grey
+                            : Colors.black),
                         fontSize: 18,
                         fontWeight: FontWeight.w400),
                   ),
                 ),
                 const SizedBox(height: 10),
                 SizedBox(
-                  width: size.width * 0.4 + 10,
+                  width: size.width * 0.5,
                   height: 20,
                   child: Row(
                     children: [
@@ -67,9 +65,11 @@ class BuildChats extends StatelessWidget {
                         child: Text(
                           chatsData[index].lastMessage,
                           style: TextStyle(
-                              color: chatsData[index].isReaded
+                              color: settingsProvider.darkMode?(chatsData[index].isReaded
                                   ? Colors.grey[400]
-                                  : Colors.blue,
+                                  : Colors.white):(chatsData[index].isReaded
+                                  ? Colors.grey[400]
+                                  : Colors.blue),
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                           maxLines: 1,
@@ -94,7 +94,7 @@ class BuildChats extends StatelessWidget {
                   child: Text(
                     chatsData[index].time,
                     style: TextStyle(
-                        color: Colors.grey[800],
+                        color:settingsProvider.darkMode? Colors.white :Colors.grey[800],
                         fontSize: 14,
                         fontWeight: FontWeight.w400),
                   ),
@@ -107,5 +107,3 @@ class BuildChats extends StatelessWidget {
     );
   }
 }
-
-

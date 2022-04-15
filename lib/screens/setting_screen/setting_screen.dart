@@ -1,28 +1,33 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_chat/providers/settings.dart';
 import 'package:flutter_chat/screens/register_screen/button_setting.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:flutter_chat/components/Icons/setting_icon_icons.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+  const SettingScreen({Key? key, required this.settingsProvider})
+      : super(key: key);
+  final SettingsProvider settingsProvider;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor:
+            settingsProvider.darkMode ? Colors.black : Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: SvgPicture.asset("assets/icons/back.svg", color: Colors.black),
+          icon: SvgPicture.asset("assets/icons/back.svg",
+              color: settingsProvider.darkMode ? Colors.white : Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: Container(
-        color: Colors.white,
+        color: settingsProvider.darkMode ? Colors.black : Colors.white,
         child: SafeArea(
             child: SingleChildScrollView(
           child: Column(
@@ -34,18 +39,32 @@ class SettingScreen extends StatelessWidget {
                       'assets/images/user1.png',
                       scale: 2,
                     ),
-                    const Text("Dao Duy Thai",
+                    Text("Dao Duy Thai",
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: settingsProvider.darkMode
+                                ? Colors.white
+                                : Colors.black)),
                   ],
                 ),
               ),
               ButtonSettings(
                 size: size,
-                color: Colors.black,
-                icon: const Icon(SettingIcon.moon, color: Colors.white),
-                text: 'Che do toi',
+                color: settingsProvider.darkMode ? Colors.white : Colors.black,
+                icon: settingsProvider.darkMode
+                    ? Icon(Icons.light_mode, color: Colors.black)
+                    : Icon(SettingIcon.moon, color: Colors.white),
+                text: Text(
+                    settingsProvider.darkMode ? "CHe do sang" : "CHe do toi",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
+                  settingsProvider.changeMode();
                   print('Che do toi');
                 },
               ),
@@ -54,7 +73,13 @@ class SettingScreen extends StatelessWidget {
                 color: Colors.blue,
                 icon:
                     const Icon(SettingIcon.chat, color: Colors.white, size: 16),
-                text: 'Tin nhan dang cho',
+                text: Text("Tin nhan dang cho",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
                   print('Tin nhan dang cho');
                 },
@@ -64,7 +89,13 @@ class SettingScreen extends StatelessWidget {
                 color: const Color(0xFFff00ff),
                 icon:
                     const Icon(SettingIcon.bell, color: Colors.white, size: 18),
-                text: 'Thong bao & am thanh',
+                text: Text("Thong bao & am thanh",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
                   print('Thong bao & am thanh');
                 },
@@ -73,7 +104,13 @@ class SettingScreen extends StatelessWidget {
                 size: size,
                 color: Colors.grey,
                 icon: const Icon(SettingIcon.doc_text, color: Colors.white),
-                text: 'Phap ly & chinh sach',
+                text: Text("Phap li & chinh sach",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
                   print('Phap ly & chinh sach');
                 },
@@ -82,7 +119,13 @@ class SettingScreen extends StatelessWidget {
                 size: size,
                 color: Colors.lightBlue,
                 icon: const Icon(SettingIcon.help_outline, color: Colors.white),
-                text: 'Tro giup',
+                text: Text("Tro giup",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
                   print('Tro giup');
                 },
@@ -92,7 +135,13 @@ class SettingScreen extends StatelessWidget {
                 color: const Color(0xFFff4dff),
                 icon: const Icon(SettingIcon.image,
                     color: Colors.white, size: 18),
-                text: 'Anh & file phuong tien',
+                text: Text('Anh & file phuong tien',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
                   print('Anh & file phuong tien');
                 },
@@ -102,45 +151,81 @@ class SettingScreen extends StatelessWidget {
                 color: Colors.orange,
                 icon: const Icon(SettingIcon.attention,
                     color: Colors.white, size: 18),
-                text: 'Bao cao su co ki thuat',
+                text: Text('Bao cao su co ki thuat',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
                   print('Bao cao su co ki thuat');
                 },
               ),
               ButtonSettings(
                 size: size,
-                color: Colors.black,
-                icon: const Icon(SettingIcon.moon, color: Colors.white),
-                text: 'Che do toi',
+                color: settingsProvider.darkMode ? Colors.black : Colors.white,
+                icon: settingsProvider.darkMode
+                    ? Icon(Icons.light_mode, color: Colors.white)
+                    : Icon(SettingIcon.moon, color: Colors.white),
+                text: Text("CHe do toi",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
-                  print("Che do toi");
+                  print('Che do toi');
                 },
               ),
               ButtonSettings(
                 size: size,
                 color: const Color(0xFFff00ff),
                 icon: const Icon(SettingIcon.mood, color: Colors.white),
-                text: 'Trang Thai tuy chinh',
+                text: Text('Trang thai tuy chinh',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
                   print('Trang Thai tuy chinh');
                 },
               ),
               ButtonSettings(
                 size: size,
-                color: Colors.black,
-                icon: const Icon(SettingIcon.moon, color: Colors.white),
-                text: 'Che do toi',
+                color: settingsProvider.darkMode ? Colors.black : Colors.white,
+                icon: settingsProvider.darkMode
+                    ? Icon(Icons.light_mode, color: Colors.white)
+                    : Icon(SettingIcon.moon, color: Colors.white),
+                text: Text("CHe do toi",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
-                  print("Che do toi");
+                  print('Che do toi');
                 },
               ),
               ButtonSettings(
                 size: size,
-                color: Colors.black,
-                icon: const Icon(SettingIcon.moon, color: Colors.white),
-                text: 'Che do toi',
+                color: settingsProvider.darkMode ? Colors.black : Colors.white,
+                icon: settingsProvider.darkMode
+                    ? Icon(Icons.light_mode, color: Colors.white)
+                    : Icon(SettingIcon.moon, color: Colors.white),
+                text: Text("CHe do toi",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: settingsProvider.darkMode
+                            ? Colors.white
+                            : Colors.black)),
                 press: () {
-                  print("Che do toi");
+                  print('Che do toi');
                 },
               ),
             ],

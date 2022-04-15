@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/components/Icons/home_icons.dart';
 import 'package:flutter_chat/models/chat.dart';
+import 'package:flutter_chat/providers/settings.dart';
 
-import 'inf_description.dart';
+import 'chat_description.dart';
 
 class ChatMessage extends StatelessWidget {
   const ChatMessage({
     Key? key,
     required this.size,
+    required this.settingsProvider,
   }) : super(key: key);
 
   final Size size;
+  final SettingsProvider settingsProvider;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:
-          size.height - size.height * 0.14 - size.height * 0.1 - 57,
+      height: size.height - size.height * 0.14 - size.height * 0.1 - 67,
       width: size.width,
-      padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
       margin: const EdgeInsets.only(top: 10),
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
+      decoration:  BoxDecoration(
+      color: settingsProvider.darkMode ? Colors.black54 : Colors.white,
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(24),
             topRight: Radius.circular(24),
           )),
@@ -31,8 +33,11 @@ class ChatMessage extends StatelessWidget {
         child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: chatsData.length,
-            itemBuilder: (context, index) =>
-                BuildChats(size: size, index: index)),
+            itemBuilder: (context, index) => BuildChats(
+                  size: size,
+                  index: index,
+                  settingsProvider: settingsProvider,
+                )),
       ),
     );
   }
@@ -49,22 +54,22 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: size.height * 0.05,
-        margin: const EdgeInsets.symmetric(horizontal:5),
+        height: size.height * 0.06,
+        margin: const EdgeInsets.symmetric(horizontal: 8),
         child: const TextField(
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+              borderRadius: BorderRadius.all(Radius.circular(30.0)),
               borderSide: BorderSide(color: Colors.white),
             ),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+              borderRadius: BorderRadius.all(Radius.circular(30.0)),
             ),
             hintText: "Tim kiem",
             hintStyle: TextStyle(fontSize: 17, color: Colors.black45),
-            contentPadding: EdgeInsets.only(left:10,right:10,top: 10),
+            contentPadding: EdgeInsets.only(left: 10, right: 10, top: 10),
             prefixIcon: Icon(Home.search),
           ),
         ));

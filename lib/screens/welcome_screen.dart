@@ -14,7 +14,7 @@ class WelcomeScreen extends StatelessWidget {
       backgroundColor: Colors.blue,
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.only(top: 9* kDefaultPadding),
+        padding: const EdgeInsets.only(top: 9 * kDefaultPadding),
         child: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -37,13 +37,14 @@ class WelcomeScreen extends StatelessWidget {
                   child: Container(
                     width: kDefaultPadding * 6,
                     child: FlatButton(
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:(context)=> const LoginScreen(),
-                            )
-                        ),
-                          
+                        onPressed: () => Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const LoginScreen(),
+                              ),
+                              (route) => false,
+                            ),
                         color: Colors.amber,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(14),
