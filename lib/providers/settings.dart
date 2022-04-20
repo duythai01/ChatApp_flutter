@@ -1,16 +1,14 @@
-
 import 'package:flutter/material.dart';
 
-class SettingsProvider with ChangeNotifier{
-   bool _darkMode = false;
+class SettingsProvider extends ChangeNotifier {
+  bool _darkMode = false;
 
-    bool get darkMode {
+  bool get darkMode {
     return _darkMode;
   }
 
-
-   void changeMode(){
-     _darkMode = !_darkMode;
-     notifyListeners();
-   }
+  void changeMode() {
+    _darkMode = !_darkMode;
+    notifyListeners();
+  }
 }

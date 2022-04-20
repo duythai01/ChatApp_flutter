@@ -23,7 +23,7 @@ class Story extends StatelessWidget {
         // color: Colors.amberAccent,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 1 + friendsList.length,
+            itemCount:friendsList.length,
             itemBuilder: (context, index) {
               if (index == 0) {
                 return AddStory(settingsProvider: settingsProvider);
@@ -120,7 +120,7 @@ Padding BuildStoryBoard(
                           color: settingsProvider.darkMode
                               ? Colors.black
                               : kPrimaryColor,
-                          width: 2,
+                          width: 3,
                         )),
                     child: const Icon(
                       Icons.circle,

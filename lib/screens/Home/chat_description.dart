@@ -43,10 +43,9 @@ class BuildChats extends StatelessWidget {
                     chatsData[index].name,
                     style: TextStyle(
                         color: settingsProvider.darkMode? (chatsData[index].isReaded
-                            ? Colors.grey
-                            : Colors.white):(chatsData[index].isReaded
-                            ? Colors.grey
-                            : Colors.black),
+                            ? Colors.grey: Colors.white):
+                            (chatsData[index].isReaded
+                            ? Colors.grey : Colors.black),
                         fontSize: 18,
                         fontWeight: FontWeight.w400),
                   ),
@@ -90,7 +89,7 @@ class BuildChats extends StatelessWidget {
                     color:
                         chatsData[index].isActive ? Colors.green : Colors.grey),
                 Container(
-                  margin: const EdgeInsets.only(left: 30, top: 12),
+                  margin: const EdgeInsets.only(left: 26, top: 12),
                   child: Text(
                     chatsData[index].time,
                     style: TextStyle(

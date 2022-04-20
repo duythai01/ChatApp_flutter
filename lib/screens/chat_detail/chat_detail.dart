@@ -18,75 +18,83 @@ class ChatDetail extends StatelessWidget {
     var scaffold = Scaffold(
       appBar: BuildAppBarChatDetail(size, context),
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            // content chat
-            Column(
+          child: Stack(children: [
+        SingleChildScrollView(
+          child: Container(
+            child: Column(
               children: [
+                // content chat
+                Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: size.height - heightAppbar ,
+                      color: Colors.amberAccent,
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: size.height * 0.07,
+            color: Colors.redAccent,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.menu, color: Colors.blue),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(Icons.camera_alt, color: Colors.blue),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(
+                    SettingIcon.image,
+                    color: Colors.blue,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(
+                    IconChat.microphone,
+                    color: Colors.blue,
+                  ),
+                  onPressed: () {},
+                ),
                 Container(
-                  width: double.infinity,
-                  height: size.height - heightAppbar - size.height * 0.09,
-                  color: Colors.white,
+                  width: size.width * 0.37,
+                  height: size.height * 0.05,
+                  margin: const EdgeInsets.only(left: 5),
+                  // color: Colors.green,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.grey.shade300,
+                        border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        suffixIcon:
+                            const Icon(Icons.mood_outlined, color: Colors.blue)),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    IconChat.send,
+                    color: Colors.blue,
+                  ),
+                  onPressed: () {},
                 ),
               ],
-            )
-          ],
+            ),
+          ),
         ),
-      )),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.lightBlue[100],
-        child: Row(
-          children: [
-            IconButton(
-              icon: const Icon(Icons.menu, color: Colors.blue),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.camera_alt, color: Colors.blue),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(
-                SettingIcon.image,
-                color: Colors.blue,
-              ),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(
-                IconChat.microphone,
-                color: Colors.blue,
-              ),
-              onPressed: () {},
-            ),
-            Container(
-              width: size.width * 0.4,
-              height: size.height * 0.05,
-              margin: const EdgeInsets.only(left: 5),
-              // color: Colors.green,
-              child: TextField(
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey.shade300,
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    suffixIcon:
-                        const Icon(Icons.mood_outlined, color: Colors.blue)),
-              ),
-            ),
-            IconButton(
-              icon: const Icon(
-                IconChat.send,
-                color: Colors.blue,
-              ),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
+      ])),
     );
     return scaffold;
   }

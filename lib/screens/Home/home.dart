@@ -9,15 +9,18 @@ import 'package:provider/provider.dart';
 import 'chat_message.dart';
 import 'stories.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return ChangeNotifierProvider(
-        create: (BuildContext context) => SettingsProvider(),
-        child: Home(size: size));
+    return Home(size: size);
   }
 }
 
@@ -26,29 +29,31 @@ class Home extends StatelessWidget {
   final Size size;
   @override
   Widget build(BuildContext context) {
-    final settingsProvider = Provider.of<SettingsProvider>(context);
-    return Scaffold(
-      backgroundColor:
-          settingsProvider.darkMode ? Colors.black : Colors.lightBlue[100],
-      appBar: BuildAppBar(size, context, settingsProvider),
-      body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          //header
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Story(size: size, settingsProvider: settingsProvider),
-                SearchBar(size: size),
-                ChatMessage(size: size, settingsProvider: settingsProvider),
-              ],
-            )
-          ],
-        ),
-      )),
-    );
+    return Consumer<SettingsProvider>(
+        builder: (context, settingsProvider, child) {
+      return Scaffold(
+        backgroundColor:
+            settingsProvider.darkMode ? Colors.black : Colors.lightBlue[100],
+        appBar: BuildAppBar(size, context, settingsProvider),
+        body: SafeArea(
+            child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            //header
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Story(size: size, settingsProvider: settingsProvider),
+                  SearchBar(size: size),
+                  ChatMessage(size: size, settingsProvider: settingsProvider),
+                ],
+              )
+            ],
+          ),
+        )),
+      );
+    });
   }
 
   AppBar BuildAppBar(
@@ -69,8 +74,7 @@ class Home extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      SettingScreen(settingsProvider: settingsProvider),
+                  builder: (context) => SettingScreen(),
                 ));
           },
         ),
