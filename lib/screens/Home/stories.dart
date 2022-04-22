@@ -18,7 +18,7 @@ class Story extends StatelessWidget {
   final SettingsProvider settingsProvider;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: size.height * 0.1 + 10,
         // color: Colors.amberAccent,
         child: ListView.builder(
@@ -80,7 +80,7 @@ Padding BuildStoryBoard(
     Size size, int index, SettingsProvider settingsProvider) {
   return Padding(
     padding: const EdgeInsets.only(left: 8),
-    child: Container(
+    child: SizedBox(
       height: size.height * 0.6,
       width: size.width * 0.18,
       // color: Colors.amber,

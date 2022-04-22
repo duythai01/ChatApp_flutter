@@ -1,13 +1,18 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, unused_local_variable, deprecated_member_use
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/providers/settings.dart';
 import 'package:flutter_chat/screens/setting_screen/setting_screen.dart';
 import 'package:flutter_chat/widgets/circle_btn.dart';
 import 'package:provider/provider.dart';
 
+import '../login_screen/Social_login/google_sign_in.dart';
+import '../login_screen/login.dart';
 import 'chat_message.dart';
 import 'stories.dart';
+
+enum ConfirmAction { cancel, accept }
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,8 +25,47 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Home(size: size);
+    return WillPopScope(
+        onWillPop: () async {
+          final ConfirmAction? action = await _asyncConfirmDialog(context);
+          return false;
+        },
+        child: Home(size: size));
   }
+}
+
+Future<ConfirmAction?> _asyncConfirmDialog(BuildContext context) async {
+  return showDialog<ConfirmAction>(
+    context: context,
+    barrierDismissible: true, // user must tap button for close dialog!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Thoat tai khoan ?'),
+        content: const Text('Tai khoan se bi dang xuat khoi ung dung '),
+        actions: <Widget>[
+          FlatButton(
+            child: const Text('Cancel'),
+            onPressed: () {
+              Navigator.of(context).pop(ConfirmAction.cancel);
+            },
+          ),
+          FlatButton(
+            child: const Text('Accept'),
+            onPressed: () {
+              signOutGoogle();
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const LoginScreen(),
+                ),
+                (route) => false,
+              );
+            },
+          )
+        ],
+      );
+    },
+  );
 }
 
 class Home extends StatelessWidget {
@@ -58,26 +102,24 @@ class Home extends StatelessWidget {
 
   AppBar BuildAppBar(
       Size size, BuildContext context, SettingsProvider settingsProvider) {
+    final user = FirebaseAuth.instance.currentUser;
+    var image = user?.photoURL;
+    var name = user?.displayName;
+    print(user?.photoURL);
     return AppBar(
       toolbarHeight: size.height * 0.1,
       backgroundColor:
           settingsProvider.darkMode ? Colors.black : Colors.lightBlue[100],
       elevation: 0,
-      leading: Container(
-        // height: size.width * 0.1,
-        // width: size.width * 0.1,
-        color: Colors.amber,
-        // margin: const EdgeInsets.only(left: 10),
+      leading: SizedBox(
         child: FloatingActionButton(
-          child: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/user1.png"),
-              radius:30),
-
+          child:
+              CircleAvatar(backgroundImage: NetworkImage(image!), radius: 30),
           onPressed: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SettingScreen(),
+                  builder: (context) => const SettingScreen(),
                 ));
           },
         ),
@@ -90,7 +132,7 @@ class Home extends StatelessWidget {
             ),
             children: [
               TextSpan(
-                text: "Dao Duy Thai",
+                text: name,
                 style: TextStyle(
                     color: settingsProvider.darkMode
                         ? Colors.white

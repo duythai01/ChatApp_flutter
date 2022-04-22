@@ -1,5 +1,6 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, avoid_print
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,24 +17,33 @@ class GoogleLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<GoogleSignInProvider>(builder: (context, gg, child) {
-      return IconSocialButton(
-          press: () {
-            print('google');
-            gg.googleLogin();
-            signInWithGoogle().then((value) {
-              if (value != null) {
-                print(value);
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => const HomeScreen(),
-                  ),
-                  (route) => false,
-                );
-              }
-            });
-          },
-          icon: Image.asset("assets/images/Google__G__Logo.svg.png"));
+      return StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              return IconSocialButton(
+                  press: () {
+                    print('google');
+                    gg.googleLogin();
+                    signInWithGoogle().then((value) {
+                      if (value != null) {
+                        print(value);
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const HomeScreen(),
+                          ),
+                          (route) => false,
+                        );
+                      }
+                    });
+                  },
+                  icon: Image.asset("assets/images/Google__G__Logo.svg.png"));
+            }
+          });
     });
   }
 }

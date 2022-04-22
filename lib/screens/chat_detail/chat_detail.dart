@@ -20,7 +20,7 @@ class ChatDetail extends StatelessWidget {
       body: SafeArea(
           child: Stack(children: [
         SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             child: Column(
               children: [
                 // content chat

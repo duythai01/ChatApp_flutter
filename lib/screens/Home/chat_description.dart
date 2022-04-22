@@ -18,7 +18,7 @@ class BuildChats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: size.width * 0.9,
       height: size.height * 0.1,
       child: MaterialButton(

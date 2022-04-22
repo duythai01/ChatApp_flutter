@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print, prefer_final_fields, unnecessary_new, unused_field, unused_local_variable
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/components/Icons/eyes_icons.dart';
 import 'package:flutter_chat/components/Icons/icon_login_icons.dart';
@@ -188,10 +187,10 @@ class LoginContent extends StatelessWidget {
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: const <Widget>[
                         GoogleLogin(),
                         AppleLogin(),
-                        FacebookLogin()
+                        FacebookLogin(),
                       ],
                     ),
                     SizedBox(height: size.height * 0.04),
