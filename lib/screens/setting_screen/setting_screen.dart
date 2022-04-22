@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/providers/settings.dart';
 import 'package:flutter_chat/screens/register_screen/button_setting.dart';
@@ -17,6 +18,9 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+     final user = FirebaseAuth.instance.currentUser;
+    var image = user?.photoURL;
+    var name = user?.displayName;
     return Consumer<SettingsProvider>(
       builder: (context, settingsProvider, child) {
         return Scaffold(
@@ -40,11 +44,8 @@ class SettingScreen extends StatelessWidget {
                   Center(
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/user1.png',
-                          scale: 2,
-                        ),
-                        Text("Dao Duy Thai",
+                        CircleAvatar(backgroundImage: NetworkImage(image!), radius: 45),
+                        Text(name!,
                             style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
