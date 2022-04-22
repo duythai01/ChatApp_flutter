@@ -20,7 +20,7 @@ class ChatMessage extends StatelessWidget {
     return Container(
       height: size.height - size.height * 0.14 - size.height * 0.1 - 67,
       width: size.width,
-      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      padding: const EdgeInsets.only(top: 8, left: 10, right: 8),
       margin: const EdgeInsets.only(top: 10),
       decoration:  BoxDecoration(
       color: settingsProvider.darkMode ? Colors.black54 : Colors.white,

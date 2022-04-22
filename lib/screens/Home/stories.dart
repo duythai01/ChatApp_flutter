@@ -23,7 +23,7 @@ class Story extends StatelessWidget {
         // color: Colors.amberAccent,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount:friendsList.length,
+            itemCount: friendsList.length,
             itemBuilder: (context, index) {
               if (index == 0) {
                 return AddStory(settingsProvider: settingsProvider);
@@ -102,9 +102,9 @@ Padding BuildStoryBoard(
                   child: FloatingActionButton(
                     heroTag: "btn $index",
                     onPressed: () {},
-                    child: Image.asset(
-                      friendsList[index].image,
-                      scale: 3,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage(friendsList[index].image),
+                      radius: 30,
                     ),
                   ),
                 ),

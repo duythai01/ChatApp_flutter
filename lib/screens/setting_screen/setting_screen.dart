@@ -8,6 +8,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_chat/components/Icons/setting_icon_icons.dart';
 import 'package:provider/provider.dart';
 
+import '../login_screen/Social_login/google_sign_in.dart';
+import '../login_screen/login.dart';
+
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
 
@@ -171,11 +174,12 @@ class SettingScreen extends StatelessWidget {
                   ButtonSettings(
                     size: size,
                     color:
-                        settingsProvider.darkMode ? Colors.black : Colors.white,
+                        settingsProvider.darkMode ? Colors.white : Colors.black,
                     icon: settingsProvider.darkMode
-                        ? Icon(Icons.light_mode, color: Colors.white)
-                        : Icon(SettingIcon.moon, color: Colors.white),
-                    text: Text("CHe do toi",
+                        ? Icon(Icons.light_mode,
+                            color: Color.fromARGB(255, 8, 8, 8))
+                        : Icon(Icons.logout_outlined, color: Colors.white),
+                    text: Text("thoat tai khoan",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -183,7 +187,15 @@ class SettingScreen extends StatelessWidget {
                                 ? Colors.white
                                 : Colors.black)),
                     press: () {
-                      print('Che do toi');
+                      signOutGoogle();
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const LoginScreen(),
+                        ),
+                        (route) => false,
+                      );
                     },
                   ),
                   ButtonSettings(

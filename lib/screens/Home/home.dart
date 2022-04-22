@@ -64,13 +64,16 @@ class Home extends StatelessWidget {
           settingsProvider.darkMode ? Colors.black : Colors.lightBlue[100],
       elevation: 0,
       leading: Container(
-        margin: const EdgeInsets.only(left: 10),
-        child: CircleBtnImage(
-          image: Image.asset(
-            "assets/images/user1.png",
-            scale: 2,
-          ),
-          press: () {
+        // height: size.width * 0.1,
+        // width: size.width * 0.1,
+        color: Colors.amber,
+        // margin: const EdgeInsets.only(left: 10),
+        child: FloatingActionButton(
+          child: CircleAvatar(
+              backgroundImage: AssetImage("assets/images/user1.png"),
+              radius:30),
+
+          onPressed: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(

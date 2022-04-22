@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print, prefer_final_fields, unnecessary_new, unused_field, unused_local_variable
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/components/Icons/eyes_icons.dart';
 import 'package:flutter_chat/components/Icons/icon_login_icons.dart';
-import 'package:flutter_chat/components/Icons/social_icons.dart';
 import 'package:flutter_chat/screens/Home/home.dart';
 import 'package:flutter_chat/screens/register_screen/register.dart';
 import 'package:flutter_chat/validation/validation_login.dart';
@@ -14,18 +14,7 @@ import 'forget_password.dart';
 import '../../components/line_black.dart';
 import 'icon_social_btn.dart';
 
-// class LoginScreen extends StatelessWidget {
-//   const LoginScreen({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     bool _secureText = true;
-//     Size size = MediaQuery.of(context).size;
-//     return ChangeNotifierProvider(
-//         create: (context) => LoginValidate(),
-//         child: LoginContent(size: size, secureText: _secureText));
-//   }
-// }
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -196,36 +185,23 @@ class LoginContent extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 8),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        IconSocialButton(
-                            press: () {
-                              print('google');
-                            },
-                            icon: Image.asset(
-                                "assets/images/Google__G__Logo.svg.png")),
-                        IconSocialButton(
-                            press: () {
-                              print('apple');
-                            },
-                            icon: const Icon(Social.apple, size: 32)),
-                        IconSocialButton(
-                            press: () {
-                              print("facebook");
-                            },
-                            icon: const Icon(
-                              Social.facebook_squared,
-                              color: Colors.blue,
-                              size: 32,
-                            ))
+                        GoogleLogin(),
+                        AppleLogin(),
+                        FacebookLogin()
                       ],
                     ),
                     SizedBox(height: size.height * 0.04),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text("Not a account?", style: TextStyle(fontSize: 16),),
+                        const Text(
+                          "Not a account?",
+                          style: TextStyle(fontSize: 16),
+                        ),
                         TextButton(
                             onPressed: () => Navigator.push(
                                 context,
