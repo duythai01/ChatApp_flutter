@@ -43,13 +43,13 @@ Future<ConfirmAction?> _asyncConfirmDialog(BuildContext context) async {
         title: const Text('Thoat tai khoan ?'),
         content: const Text('Tai khoan se bi dang xuat khoi ung dung '),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: const Text('Cancel'),
             onPressed: () {
               Navigator.of(context).pop(ConfirmAction.cancel);
             },
           ),
-          FlatButton(
+          TextButton(
             child: const Text('Accept'),
             onPressed: () {
               signOutGoogle();

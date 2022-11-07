@@ -36,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(top: kDefaultPadding),
                   child: Container(
                     width: kDefaultPadding * 6,
-                    child: FlatButton(
+                    child: TextButton(
                         onPressed: () => Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
@@ -45,10 +45,12 @@ class WelcomeScreen extends StatelessWidget {
                               ),
                               (route) => false,
                             ),
-                        color: Colors.amber,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                            side: const BorderSide(color: Colors.amber)),
+                         style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+                          shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+                                 borderRadius: BorderRadius.circular(14),
+                              side: const BorderSide(color: Colors.amber)),
+                          )),
                         child: Text("Skip",
                             style: Theme.of(context)
                                 .textTheme
